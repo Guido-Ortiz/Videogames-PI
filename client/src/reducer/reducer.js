@@ -4,8 +4,8 @@ import {
     FILTER_BY_GENRE,
     ORDER_BY_RATING,
     ORDER_BY_ALPHABET,
-    FILTER_CREATED
-} from "../actions/constants";
+    FILTER_CREATED,
+    GET_VIDEOGAMES_BY_NAME } from "../actions/constants";
 
 const initialstate = {
     videogames: [],
@@ -34,6 +34,12 @@ function rootReducer(state = initialstate, action) {
             return {
                 ...state,
                 videogames: [...filterGenre],
+            }
+
+        case GET_VIDEOGAMES_BY_NAME:
+            return{
+                ...state,
+                videogames: action.payload
             }
 
 

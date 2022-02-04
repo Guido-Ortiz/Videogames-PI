@@ -5,7 +5,8 @@ import {
     FILTER_BY_GENRE,
     ORDER_BY_RATING,
     ORDER_BY_ALPHABET,
-    FILTER_CREATED,} from "./constants";
+    FILTER_CREATED,
+    GET_VIDEOGAMES_BY_NAME,} from "./constants";
 
 export function getVideogames(){
     return async function(dispatch){
@@ -34,6 +35,20 @@ export function getGenres(){
             console.log(e)
         }
         
+    }
+}
+
+export function getVideogamesByName(name){
+    return async function(dispatch){
+        try{
+            var json = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+            return dispatch({
+                type: GET_VIDEOGAMES_BY_NAME,
+                payload: json.data // lo que devuelve la ruta cuando le asigno algo por name
+            })
+        } catch(e){
+            console.log(e)
+        }
     }
 }
 

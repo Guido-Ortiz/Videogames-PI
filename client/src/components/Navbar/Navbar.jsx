@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByGenre, filterCreated, orderByAlphabet, orderByRating } from "../../actions/actions";
+import SearchVideogame from '../SearchVideogame/SearchVideogame';
 
 
 export default function Navbar(){
@@ -35,10 +36,7 @@ export default function Navbar(){
         <div>
             <h1>TITULO DE MI PI</h1>
             <button>CREATE VIDEOGAME</button>
-            <div>
-                <input type='text' placeholder="search videogames..."/>
-                <button>search videogame</button>
-            </div>
+            <SearchVideogame />
             <div>
                 <label>Alphabetical:</label>
                 <select onChange={e => handleFilterName(e)}>

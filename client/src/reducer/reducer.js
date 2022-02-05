@@ -5,12 +5,14 @@ import {
     ORDER_BY_RATING,
     ORDER_BY_ALPHABET,
     FILTER_CREATED,
-    GET_VIDEOGAMES_BY_NAME } from "../actions/constants";
+    GET_VIDEOGAMES_BY_NAME, 
+    GET_VIDEOGAME_DETAIL} from "../actions/constants";
 
 const initialstate = {
     videogames: [],
     genres: [],
-    allVideogames: []
+    allVideogames: [],
+    videogameDetail: {},
 }
 
 function rootReducer(state = initialstate, action) {
@@ -42,7 +44,11 @@ function rootReducer(state = initialstate, action) {
                 videogames: action.payload
             }
 
-
+        case GET_VIDEOGAME_DETAIL:
+            return{
+                ...state,
+                videogameDetail: action.payload
+            }
 
         case ORDER_BY_RATING:
             let orderRating = [...state.allVideogames]

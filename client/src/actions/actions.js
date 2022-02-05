@@ -6,7 +6,8 @@ import {
     ORDER_BY_RATING,
     ORDER_BY_ALPHABET,
     FILTER_CREATED,
-    GET_VIDEOGAMES_BY_NAME,} from "./constants";
+    GET_VIDEOGAMES_BY_NAME,
+    GET_VIDEOGAME_DETAIL,} from "./constants";
 
 export function getVideogames(){
     return async function(dispatch){
@@ -52,6 +53,20 @@ export function getVideogamesByName(name){
     }
 }
 
+export function getVideogameDetail(id){
+    return async function(dispatch){
+        try{
+            var json = await axios.get("http://localhost:3001/videogame/" + id)
+            return dispatch({
+                type: GET_VIDEOGAME_DETAIL,
+                payload: json.data
+            })
+        } catch(e){
+            console.log(e)
+        }
+    }
+}
+
 export function filterByGenre(payload){
     return{
         type: FILTER_BY_GENRE,
@@ -79,3 +94,4 @@ export function filterCreated(payload){
         payload
     }
 }
+

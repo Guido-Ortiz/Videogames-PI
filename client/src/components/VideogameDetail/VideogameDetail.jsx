@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getVideogameDetail } from "../../actions/actions";
 
-export default function VideogameDetail(props){
+function VideogameDetail(props){
 
     const dispatch = useDispatch()
     const detailVideogame = useSelector(state => state.videogameDetail)
@@ -20,3 +20,4 @@ export default function VideogameDetail(props){
         </div>
     )
 }
+export default VideogameDetail

@@ -7,7 +7,8 @@ import {
     ORDER_BY_ALPHABET,
     FILTER_CREATED,
     GET_VIDEOGAMES_BY_NAME,
-    GET_VIDEOGAME_DETAIL,} from "./constants";
+    GET_VIDEOGAME_DETAIL,
+    CREATE_VIDEOGAME} from "./constants";
 
 export function getVideogames(){
     return async function(dispatch){
@@ -20,7 +21,14 @@ export function getVideogames(){
         } catch(e){
             console.log(e)
         }
-        
+    }
+}
+
+export function createVideogamegame(payload){
+    return async function(dispatch){
+        const json = axios.post('http://localhost:3001/videogame', payload)
+        console.log(json)
+        return json
     }
 }
 

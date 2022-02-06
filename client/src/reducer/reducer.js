@@ -6,7 +6,8 @@ import {
     ORDER_BY_ALPHABET,
     FILTER_CREATED,
     GET_VIDEOGAMES_BY_NAME, 
-    GET_VIDEOGAME_DETAIL} from "../actions/constants";
+    GET_VIDEOGAME_DETAIL,
+    CREATE_VIDEOGAME} from "../actions/constants";
 
 const initialstate = {
     videogames: [],
@@ -137,6 +138,12 @@ function rootReducer(state = initialstate, action) {
                 videogames:
                     action.payload === "all" ? state.allVideogames : filterByOrigin,
             }
+
+        case CREATE_VIDEOGAME:
+            return{
+                ...state
+            }
+
         default:
             return state
     }

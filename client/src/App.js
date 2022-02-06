@@ -24,10 +24,9 @@ function App() {
 
         <Route exact path={'/home/:id'} component={VideogameDetail} />
 
-        <Route path='/create'>
+        <Route path = {'/create'}>
           <CreateVideogame />
-        </Route>
-          
+        </Route>          
 
       </Switch>
     </BrowserRouter>

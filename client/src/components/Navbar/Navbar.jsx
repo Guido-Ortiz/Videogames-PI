@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { filterByGenre, filterCreated, orderByAlphabet, orderByRating } from "../../actions/actions";
+import CreateVideogame from "../CreateVideogame/CreateVideogame";
 import SearchVideogame from '../SearchVideogame/SearchVideogame';
 
 
@@ -35,7 +37,12 @@ export default function Navbar(){
     return(
         <div>
             <h1>TITULO DE MI PI</h1>
-            <button>CREATE VIDEOGAME</button>
+
+            <Link to='/create'>
+                <button>CREATE VIDEOGAME</button>
+            </Link>
+            
+            {/* <CreateVideogame /> */}
             <SearchVideogame />
             <div>
                 <label>Alphabetical:</label>

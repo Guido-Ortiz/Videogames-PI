@@ -18,16 +18,16 @@ function App() {
           <Landing />
         </Route>
 
-        <Route path = '/home'>
+        <Route exact path = '/home'>
           <Home />
         </Route>
 
-        <Route exact path='/home/:id'>
-          <VideogameDetail />
+        <Route path = '/create'>
+          <CreateVideogame />
         </Route>
 
-        <Route path = {'/create'}>
-          <CreateVideogame />
+        <Route exact path = '/home/:id'>
+          <VideogameDetail />
         </Route>          
 
       </Switch>

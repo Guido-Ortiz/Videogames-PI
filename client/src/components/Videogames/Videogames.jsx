@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
 import { getGenres, getVideogames } from "../../actions/actions";
 import Videogame from "../Videogame/Videogame";
 
@@ -24,12 +25,13 @@ export default function Videogames({videogames}){
                 {
                     videogames && videogames.map(vg => {
                         return(
+                            <div>
                                 <Videogame id={vg.id}
                                            name={vg.name} 
                                            image={vg.image} 
                                            rating={vg.rating} 
                                            key={vg.id}/>
-                            
+                            </div>                              
                         )
                     })
                 }            

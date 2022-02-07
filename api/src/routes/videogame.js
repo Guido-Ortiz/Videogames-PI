@@ -21,7 +21,7 @@ router.get(`/:idVideogame`, async (req, res) => {
             id: response.data.id,
             name: response.data.name,
             image: response.data.background_image,
-            description: response.data.description,
+            description: response.data.description_raw,
             released: response.data.released,
             rating: response.data.rating,
             platforms: response.data.platforms.map(p => p.platform.name),

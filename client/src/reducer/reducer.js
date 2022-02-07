@@ -7,13 +7,15 @@ import {
     FILTER_CREATED,
     GET_VIDEOGAMES_BY_NAME, 
     GET_VIDEOGAME_DETAIL,
-    CREATE_VIDEOGAME} from "../actions/constants";
+    CREATE_VIDEOGAME,
+    RESET_VIDEOGAME_DETAIL,
+    } from "../actions/constants";
 
 const initialstate = {
     videogames: [],
     genres: [],
     allVideogames: [],
-    videogameDetail: {},
+    videogameDetail: null,
 }
 
 function rootReducer(state = initialstate, action) {
@@ -49,6 +51,12 @@ function rootReducer(state = initialstate, action) {
             return{
                 ...state,
                 videogameDetail: action.payload
+            }
+
+        case RESET_VIDEOGAME_DETAIL:
+            return{
+                ...state,
+                videogameDetail: null
             }
 
         case ORDER_BY_RATING:
@@ -87,6 +95,7 @@ function rootReducer(state = initialstate, action) {
                     })
                 }
             }
+            break;
 
 
         case ORDER_BY_ALPHABET:
@@ -125,6 +134,7 @@ function rootReducer(state = initialstate, action) {
                     })
                 }
             }
+            break;
 
         case FILTER_CREATED:
             const vgs = state.allVideogames;

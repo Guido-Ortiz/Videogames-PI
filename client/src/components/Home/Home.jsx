@@ -9,7 +9,8 @@ export default function Home(){
     const videogames = useSelector(state => state.videogames) // mapStateToProps
 
     const [currentPage, setCurrentPage] = useState(1)
-    const [videogamesPerPage, setVideogamesPerPage] = useState(15) // videogames per page
+    const [videogamesPerPage] = useState(15) // videogames per page
+    //const [videogamesPerPage, setVideogamesPerPage] = useState(15) // videogames per page
 
     // Get current videogames
     const indexOfLastVideogame = currentPage * videogamesPerPage

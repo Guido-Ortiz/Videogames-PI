@@ -8,7 +8,9 @@ import {
     FILTER_CREATED,
     GET_VIDEOGAMES_BY_NAME,
     GET_VIDEOGAME_DETAIL,
-    CREATE_VIDEOGAME} from "./constants";
+    CREATE_VIDEOGAME,
+    RESET_VIDEOGAME_DETAIL,
+} from "./constants";
 
 export function getVideogames(){
     return async function(dispatch){
@@ -75,6 +77,12 @@ export function getVideogameDetail(id){
     }
 }
 
+export function resetVideogamedetail(){
+    return{
+        type: RESET_VIDEOGAME_DETAIL
+    }
+}
+
 export function filterByGenre(payload){
     return{
         type: FILTER_BY_GENRE,
@@ -102,4 +110,3 @@ export function filterCreated(payload){
         payload
     }
 }
-

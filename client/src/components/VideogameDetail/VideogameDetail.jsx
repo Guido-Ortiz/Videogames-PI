@@ -1,23 +1,16 @@
 import React from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getVideogameDetail } from "../../actions/actions";
+import { Link, useHistory } from "react-router-dom";
+import { createVideogamegame, getGenres } from "../../actions/actions";
 
-function VideogameDetail(props){
-
-    const dispatch = useDispatch()
-    const detailVideogame = useSelector(state => state.videogameDetail)
-    let id = props.match.params.id
-    console.log(id)
-    useEffect(() => {
-        dispatch(getVideogameDetail(id))
-    }, [dispatch])
+function VideogameDetail(){
 
     return(
-        <div>
-            <p>este el detalle del videojuego </p>
-        </div>
+        <>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil ex magnam exercitationem aliquid repellat placeat similique aspernatur delectus vitae nam? Consequatur molestias asperiores vero sequi veritatis velit facere sunt quo?</p>
+        </>
     )
 }
 export default VideogameDetail
+

@@ -22,7 +22,9 @@ function App() {
           <Home />
         </Route>
 
-        <Route exact path={'/home/:id'} component={VideogameDetail} />
+        <Route exact path='/home/:id'>
+          <VideogameDetail />
+        </Route>
 
         <Route path = {'/create'}>
           <CreateVideogame />

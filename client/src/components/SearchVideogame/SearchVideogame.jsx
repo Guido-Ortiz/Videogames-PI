@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch} from 'react-redux';
-import { getVideogamesByName} from '../../actions/actions'
+import { getVideogamesByName} from '../../actions/actions';
+import s from './SearchVideogame.module.css';
 
 
 export default function SearchVideogame(){
@@ -21,8 +22,9 @@ export default function SearchVideogame(){
         <div>
             <input type='text'
                    placeholder='Search videogame...'
+                   className={s.input}
                    onChange={e => handleInput(e)}/>
-            <button type='submit' onClick={e => handleSubmit(e)}>Search</button>
+            <button type='submit' className={s.btn} onClick={e => handleSubmit(e)}>Search</button>
         </div>
     )
 }

@@ -1,0 +1,13 @@
+.fondo{
+    background-color: #151515;
+}
+
+.titulo{
+    position: relative;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 5px;
+    color: #fff;
+    margin: 20px;
+}

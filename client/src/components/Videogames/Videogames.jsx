@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { getGenres, getVideogames } from "../../actions/actions";
 import Videogame from "../Videogame/Videogame";
-
+import s from './Videogames.module.css';
 
 
 export default function Videogames({videogames}){
@@ -20,8 +20,7 @@ export default function Videogames({videogames}){
 
     if(videogames.length > 0){
         return(
-            <div>
-                
+            <div className={s.wrapper}>
                 {
                     videogames && videogames.map(vg => {
                         return(
@@ -29,7 +28,8 @@ export default function Videogames({videogames}){
                                 <Videogame id={vg.id}
                                            name={vg.name} 
                                            image={vg.image} 
-                                           rating={vg.rating} 
+                                           rating={vg.rating}
+                                           genres={vg.genres} 
                                            key={vg.id}/>
                             </div>                              
                         )

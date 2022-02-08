@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Navbar from "../Navbar/Navbar";
 import Videogames from "../Videogames/Videogames";
 import Pagination from "../Pagination/Pagination";
+import s from './Home.module.css';
 
 export default function Home(){
 
@@ -20,7 +21,8 @@ export default function Home(){
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     return(
-        <div>
+        <div className={s.fondo}>
+            <h1 className={s.titulo}>API RAWG</h1>
             <Navbar />
             <h1>HOLA, este es mi HOME!</h1>
 

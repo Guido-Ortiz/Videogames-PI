@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { filterByGenre, filterCreated, orderByAlphabet, orderByRating } from "../../actions/actions";
 import SearchVideogame from '../SearchVideogame/SearchVideogame';
-
+import s from './Navbar.module.css';
 
 export default function Navbar(){
 
@@ -35,13 +35,14 @@ export default function Navbar(){
 
     return(
         <div>
-            <h1>TITULO DE MI PI</h1>
-
-            <Link to='/create'>
-                <button>CREATE VIDEOGAME</button>
-            </Link>
+            <div className={s.flex}>
+                <Link to='/create'>
+                    <button className={s.btn}>CREATE VIDEOGAME</button>
+                </Link>
             
-            <SearchVideogame />
+                <SearchVideogame />
+            </div>
+            
             <div>
                 <label>Alphabetical:</label>
                 <select onChange={e => handleFilterName(e)}>

@@ -1,4 +1,5 @@
 import React from "react";
+import s from './Pagination.module.css';
 
 export default function Pagination({videogamesPerPage, totalVideogames, paginate}){
     const pageNumber = []
@@ -7,11 +8,11 @@ export default function Pagination({videogamesPerPage, totalVideogames, paginate
     }
     return(
         <nav>
-            <ul>
+            <ul className={s.pagination}>
                 {
                     pageNumber.map(n => (
                         <li key={n}>
-                            <button onClick={() => paginate(n)}>{n}</button>
+                            <button className={s.btn} onClick={() => paginate(n)}>{n}</button>
                         </li>
                     ))
                 }

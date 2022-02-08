@@ -1,0 +1,76 @@
+.fondo{
+    background-color: #e9eef2;
+    height: 100vh;
+    background-image: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.9) 100%), url('./assets/fondo.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.titulo{
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ccc;
+    padding: 10% 0;
+}
+
+.btn{
+    color: #fff;
+    background-color: #161616;
+    border-radius: 12px;
+    border: none;
+    height: 52px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 16px;; 
+    font-weight: 500;
+    grid-area: boton;
+}
+
+.btn:hover{
+    background-color: #e9eef2;
+    color: #161616;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+}
+
+/* .container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 80px; 
+}
+
+.imagen{
+    height: 50vh;
+    width: auto;
+    border-radius: 20px 0 0 20px;
+}
+
+.flex{
+    display: flex;
+    width: 120vh;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-right: 40px;
+    padding-left: 60px;
+}
+
+.parrafo{
+    font-size: 18px;
+    line-height: 26px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.titulo{
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 800;
+} */

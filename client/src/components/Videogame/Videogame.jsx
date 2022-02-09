@@ -14,8 +14,8 @@ export default function Videogame(props){
             <div className={s.cardDetails}>
                 <div className={s.rating}>{rating}</div>
                 <div className={s.name}>{name}</div>
-                <Link to = {`/home/${id}`}>
-                    <button className={s.btn}>See more</button>
+                <Link to = {`/home/${id}`} style={{ textDecoration: 'none' }}>
+                    <button className={s.btn}>SEE MORE</button>
                 </Link>
             </div>
         </div>

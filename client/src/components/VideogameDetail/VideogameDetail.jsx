@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getVideogameDetail, resetVideogamedetail } from "../../actions/actions";
 import Loader from "../Loader/Loader";
+import s from './VideogameDetail.module.css';
 
 function VideogameDetail(){
 
@@ -18,14 +19,18 @@ function VideogameDetail(){
 
     
     return(
-        <div>
+        <div className={s.fondo}>
             {
                 videogameDetail ? (
-                    <div>
-                        <h2>{videogameDetail.name}</h2>
+                    <div className={s.flex}>
+                        <h2 className={s.name}>{videogameDetail.name}</h2>
                         <h3>{videogameDetail.description}</h3>
+                        <h3>Platforms:</h3>
+                        {/* <h3>{videogameDetail.genres}</h3> */}
+                        {videogameDetail.genres.map(g => 
+                            <h3>{g.name}</h3>)}
                         <img src={videogameDetail.image}/>
-                        <Link to='/home'>HOME</Link>
+                        <Link to='/home' style={{ textDecoration: 'none' }}>HOME</Link>
                     </div>
                 ) : (
                     <div>

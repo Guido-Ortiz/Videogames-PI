@@ -36,7 +36,7 @@ export default function Navbar(){
     return(
         <div>
             <div className={s.flex}>
-                <Link to='/create'>
+                <Link to='/create' style={{ textDecoration: 'none' }}>
                     <button className={s.btn}>CREATE VIDEOGAME</button>
                 </Link>
             

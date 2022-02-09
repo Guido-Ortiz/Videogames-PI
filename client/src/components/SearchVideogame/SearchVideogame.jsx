@@ -24,7 +24,7 @@ export default function SearchVideogame(){
                    placeholder='Search videogame...'
                    className={s.input}
                    onChange={e => handleInput(e)}/>
-            <button type='submit' className={s.btn} onClick={e => handleSubmit(e)}>Search</button>
+            <button type='submit' className={s.btn} onClick={e => handleSubmit(e)}>SEARCH</button>
         </div>
     )
 }

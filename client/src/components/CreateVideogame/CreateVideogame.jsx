@@ -224,7 +224,7 @@ function CreateVideogame(){
                             Object.keys(errors).length === 0 && (<button className={s.button} type="submit">CREATE</button>)
                         }
                         {/* <button type="submit">CREATE</button> */}
-                        <Link to={'/home'}>
+                        <Link to={'/home'} style={{ textDecoration: 'none' }}>
                             <button className={s.button}>BACK</button>
                         </Link>
                     </div>

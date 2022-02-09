@@ -31,3 +31,35 @@
     background-color: #fff;
     color: grey;
 }
+
+.filtros{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.select{
+    background-color: hsla(0,0%,100%,.16);
+    margin-right: 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 2px;
+    color: hsla(0,0%,100%,.6);
+    letter-spacing: 1.5px;
+    padding: 3px;
+}
+
+option{
+    /* background-color: hsla(0,0%,100%,.6); */
+    background-color: gray;
+    color: hsla(0,0%,100%,.6);
+    border: none;
+    letter-spacing: 1.5px;
+}
+
+.label{
+    color: white;
+    letter-spacing: 1.5px;
+}

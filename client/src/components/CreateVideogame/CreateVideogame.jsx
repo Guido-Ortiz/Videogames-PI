@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { createVideogamegame, getGenres, getVideogames } from "../../actions/actions";
+import Title from "../Title/Title";
+import s from './CreateVideogame.module.css';
 
 const validate = (values) => {
     const errors = {}
@@ -134,96 +136,103 @@ function CreateVideogame(){
 
     
     return(
-        <>
+        <div className={s.fondo}>
 
-            <Link to={'/home'}>
-                <button>Back</button>
-            </Link>
+            <Title />
 
-            <h2>Create your videogame</h2>
-            <p>Complete this from and create your own videogame!</p>
-            <form onSubmit={e => handleSubmit(e)}>
-                <div>
-                    <label>Name:</label>
-                    <input type="text" value={form.name} name='name' onChange={e  => handleChange(e)} />
-                    {
-                        errors.name && (<p>{errors.name}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Description:</label>
-                    <textarea type="text" value={form.description} name='description' onChange={e  => handleChange(e)}/>
-                    {
-                        errors.description && (<p>{errors.description}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Released:</label>
-                    <input type="date" value={form.released} name='released' onChange={e  => handleChange(e)}/>
-                    {
-                        errors.released && (<p>{errors.released}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Rating:</label>
-                    <input type="number" value={form.rating} name='rating' onChange={e  => handleChange(e)}/>
-                    {
-                        errors.rating && (<p>{errors.rating}</p>)
-                    }
-                </div>
-                <div>
-                    <label>Platforms:</label>
-                    <select onChange={e => handlePlatforms(e)}>
-                    {
-                            platforms.map((p, i) => {
-                                return(
-                                    <option key={i} value={p}>{p}</option>
-                                )
-                            })
-                        }
-                    </select>
-                    {
-                        errors.platforms && (<p>{errors.platforms}</p>)
-                    }
-                            {
-                                form.platforms.map(p => (
-                                    <li>
-                                        {p}
-                                        <button onClick={() => handleDeletePlatforms(p)}>x</button>
-                                    </li>
-                                ))
-                            }
-                </div>
-                <div>
-                    <label>Genres:</label>
-                    <select onChange={e => handleGenres(e)}>
-                        
+            <div className={s.flex}>
+                <div className={s.heading}>Create your videogame</div>
+                <p className={s.parrafo}>Complete this from and create your own videogame!</p>
+                <form onSubmit={e => handleSubmit(e)}>
+                    <div className={s.options}>
+                        <label>Name:</label>
+                        <input type="text" value={form.name} name='name' onChange={e  => handleChange(e)} />
                         {
-                            genres.map(g => {
-                                return(
-                                    <option value={g.name}>{g.name}</option>
-                                )
-                            })
+                            errors.name && (<p className={s.errors}>{errors.name}</p>)
                         }
-                    </select>
-                    {
-                        errors.genres && (<p>{errors.genres}</p>)
-                    }
-                    {
-                        form.genres.map(g => (
-                            <li>
-                                {g}
-                                <button onClick={() => handleDeleteGenre(g)}>x</button>
-                            </li>
-                        ))
-                    }
-                </div>
-                {
-                    Object.keys(errors).length === 0 && (<button type="submit">CREATE</button>)
-                }
-                {/* <button type="submit">CREATE</button> */}
-            </form> 
-        </>
+                    </div>
+                    <div className={s.options}>
+                        <label>Description:</label>
+                        <textarea type="text" value={form.description} name='description' onChange={e  => handleChange(e)}/>
+                        {
+                            errors.description && (<p className={s.errors}>{errors.description}</p>)
+                        }
+                    </div>
+                    <div className={s.options}>
+                        <label>Released:</label>
+                        <input type="date" value={form.released} name='released' onChange={e  => handleChange(e)}/>
+                        {
+                            errors.released && (<p className={s.errors}>{errors.released}</p>)
+                        }
+                    </div>
+                    <div className={s.options}>
+                        <label>Rating:</label>
+                        <input type="number" value={form.rating} name='rating' onChange={e  => handleChange(e)}/>
+                        {
+                            errors.rating && (<p className={s.errors}>{errors.rating}</p>)
+                        }
+                    </div>
+                    <div className={s.options}>
+                        <label>Platforms:</label>
+                        <select onChange={e => handlePlatforms(e)}>
+                        {
+                                platforms.map((p, i) => {
+                                    return(
+                                        <option key={i} value={p}>{p}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                        {
+                            errors.platforms && (<p className={s.errors}>{errors.platforms}</p>)
+                        }
+                                {
+                                    form.platforms.map(p => (
+                                        <li>
+                                            {p}
+                                            <button onClick={() => handleDeletePlatforms(p)}>x</button>
+                                        </li>
+                                    ))
+                                }
+                    </div>
+                    <div className={s.options}>
+                        <label>Genres:</label>
+                        <select onChange={e => handleGenres(e)}>
+                            
+                            {
+                                genres.map(g => {
+                                    return(
+                                        <option value={g.name}>{g.name}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                        {
+                            errors.genres && (<p className={s.errors}>{errors.genres}</p>)
+                        }
+                        {
+                            form.genres.map(g => (
+                                <li>
+                                    {g}
+                                    <button onClick={() => handleDeleteGenre(g)}>x</button>
+                                </li>
+                            ))
+                        }
+                    </div>
+                    <div className={s.flexBtn}>
+                        {
+                            Object.keys(errors).length === 0 && (<button className={s.button} type="submit">CREATE</button>)
+                        }
+                        {/* <button type="submit">CREATE</button> */}
+                        <Link to={'/home'}>
+                            <button className={s.button}>BACK</button>
+                        </Link>
+                    </div>
+                    
+                </form>
+            </div>
+             
+        </div>
     )
 }
 export default CreateVideogame

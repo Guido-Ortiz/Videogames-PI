@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import Videogames from "../Videogames/Videogames";
 import Pagination from "../Pagination/Pagination";
 import s from './Home.module.css';
+import Title from "../Title/Title";
 
 export default function Home(){
 
@@ -22,9 +23,9 @@ export default function Home(){
 
     return(
         <div className={s.fondo}>
-            <h1 className={s.titulo}>API RAWG</h1>
+            <Title />
+            
             <Navbar />
-            <h1>HOLA, este es mi HOME!</h1>
 
             <Videogames videogames={currentVideogames}/>
             

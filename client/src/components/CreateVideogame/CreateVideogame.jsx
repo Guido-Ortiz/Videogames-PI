@@ -8,6 +8,8 @@ import s from './CreateVideogame.module.css';
 
 const validate = (values) => {
     const errors = {}
+    const regex = /^[0-5]$|^[0-5]\.[0-9]{1,2}$/;
+    // const regex = /^[0-5]{1,3}$|^[0-5]{1,3}\.[0-9]{1,3}$/;
     if(!values.name){
         errors.name = 'Name is required'
     }
@@ -23,11 +25,13 @@ const validate = (values) => {
     if(!values.rating){
         errors.rating = 'Rating is required'
     }
-    if(values.platforms.length === 0){
-        console.log(values.platforms)
+    else if(!regex.test(values.rating)){
+        errors.rating = 'Rating must be a number between 0 - 5!'
+    }
+    if(!values.platforms){
         errors.platforms = 'Platform is required'
     } 
-    if(values.genres.length === 0){
+    if(!values.genres){
         errors.genres = 'Genres is required'
     } 
     
@@ -87,9 +91,13 @@ function CreateVideogame(){
             ...form,
             genres: [...form.genres, e.target.value]
         })
+        // setErrors(validate({
+        //     ...form,
+        //     [e.target.genres]: e.target.value
+        // }))
         setErrors(validate({
             ...form,
-            [e.target.genres]: e.target.value
+            [e.target.name]: e.target.value
         }))   
     }
 
@@ -98,9 +106,13 @@ function CreateVideogame(){
             ...form,
             platforms: [...form.platforms, e.target.value]
         })
+        // setErrors(validate({
+        //     ...form,
+        //     [e.target.platforms]: e.target.value
+        // }))  
         setErrors(validate({
             ...form,
-            [e.target.platforms]: e.target.value
+            [e.target.name]: e.target.value
         }))   
     }
 
@@ -188,7 +200,7 @@ function CreateVideogame(){
                         }
                                 {
                                     form.platforms.map(p => (
-                                        <li>
+                                        <li className={s.lista}>
                                             {p}
                                             <button onClick={() => handleDeletePlatforms(p)}>x</button>
                                         </li>
@@ -212,7 +224,7 @@ function CreateVideogame(){
                         }
                         {
                             form.genres.map(g => (
-                                <li>
+                                <li className={s.lista}>
                                     {g}
                                     <button onClick={() => handleDeleteGenre(g)}>x</button>
                                 </li>
@@ -236,287 +248,3 @@ function CreateVideogame(){
     )
 }
 export default CreateVideogame
-
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import { Link, useHistory } from 'react-router-dom';
-// import { getGenres, getPlatforms, createVideogamegame } from '../../actions/actions'
-// import { useDispatch, useSelector } from 'react-redux';
-
-
-
-// function validate(input) {
-//     let errors = {}
-//     if (!input.name) {
-//         errors.name = "Name is required"
-//     }
-//     if (!input.description) {
-//         errors.description = "Description is required"
-//     }
-//     if (!input.rating || input.rating > 5 || input.rating < 0) {
-//         errors.rating = "Rating valid 0 - 5"
-//     } 
-//     if (!input.released) {
-//         errors.released = "Date is required"
-//     } 
-//     if (input.platforms.length < 1) {
-//         errors.platforms = "Enter platforms"
-//     } else {
-//         errors.platforms = ""
-//     }
-//     if (input.genres < 1) {
-//         errors.genres = "Enter genres"
-//     } else {
-//         errors.platforms = ""
-//     }
-//     return errors
-// }
-
-
-// export default function CreateVideogame() {
-//     const dispatch = useDispatch()
-//     const history = useHistory()
-
-//     const genres = useSelector((state) => state.genres)
-//     //const platforms = useSelector((state) => state.platforms)
-
-
-//     const [errors, setErrors] = useState({})
-//     const [input, setInput] = useState({
-//         name: "",
-//         description: "",
-//         released: "",
-//         rating: "",
-//         background_image: "",
-//         genres: [],
-//         platforms: []
-//     })
-
-
-
-//     //----------Inputs---------
-//     function handleInputChange(e) {
-//         setErrors(validate({
-//             ...input,
-//             [e.target.name]: e.target.value
-//         }))
-//         setInput({
-//             ...input,
-//             [e.target.name]: e.target.value
-//         })
-//     }
-//     //-----Select genres----
-//     function handleGenreSelect(e) {
-//         setInput({
-//             ...input,
-//             genres: [...input.genres, e.target.value]
-//         })
-//         setErrors(validate({
-//             ...input,
-//             [e.target.genres]: e.target.value
-//         }))
-//     }
-//     //-----Select platfroms----
-//     function handlePlatformsSelect(e) {
-//         setInput({
-//             ...input,
-//             platforms: [...input.platforms, e.target.value]
-//         })
-//         setErrors(validate({
-//             ...input,
-//             [e.target.platforms]: e.target.value
-//         }))
-//     }
-
-//     //---------Send form--------
-//     function handleSubmit(e) {
-//         if (input.name === "") {
-//             e.preventDefault()
-//             alert("Completar correctamente el formulario")
-//         } else {
-//             e.preventDefault();
-//             dispatch(createVideogamegame(input))
-//             alert("Videogame created succesfully!!")
-//             setInput({
-//                 name: "",
-//                 description: "",
-//                 platforms: "",
-//                 released: "",
-//                 rating: "",
-//                 background_image: "",
-//                 genres: [],
-//                 platforms: [] 
-//             })
-//             history.push('/home')
-//         }
-//     }
-
-//     //---------Delete genres---------
-//     function handleGenreDelete(el) {
-//         setInput({
-//             ...input,
-//             genres: input.genres.filter(genre => genre !== el)
-//         })
-//     }
-
-//     //---------Delete platforms--------
-//     function handlePlatformDelete(el) {
-//         setInput({
-//             ...input,
-//             platforms: input.platforms.filter(platform => platform !== el)
-//         })
-//     }
-
-//     useEffect(() => {
-//         dispatch(getGenres());
-//         //dispatch(getPlatforms())
-
-//     }, [dispatch]);
-
-
-
-
-//     return (
-//         <div >
-//             <h1 >CREATE GAME</h1>
-//             <form  onSubmit={(e) => handleSubmit(e)}>
-//                 <div>
-//                     <label >Name</label>
-//                     <input                      
-//                         type="text"
-//                         value={input.name}
-//                         name="name"
-//                         onChange={(e) => handleInputChange(e)}
-//                     />
-//                     {
-//                         errors.name && (
-//                             <p > {errors.name} </p>
-//                         )
-//                     }
-//                 </div>
-
-//                 <div>
-//                     <label >Rating</label>
-//                     <input
-//                         type="number"bname="rating"bvalue={input.rating}bonChange={e => handleInputChange(e)}
-//                     />
-//                     {
-//                         errors.rating && (<div > {errors.rating} </div>)
-//                     }
-//                 </div>
-
-//                 <div>
-//                     <label >Release Date</label>
-//                     <input
-                        
-//                         type="text"
-//                         value={input.released}
-//                         name="released"
-//                         onChange={(e) => handleInputChange(e)}
-//                     />
-//                     {
-//                         errors.released && (
-//                             <div > {errors.released} </div>
-//                         )
-//                     }
-//                 </div>
-
-//                 <div >
-//                     <label  >Image:</label>
-//                     <input
-                       
-//                         type="url"
-//                         name="background_image"
-//                         value={input.background_image}
-//                         onChange={(e) => handleInputChange(e)}
-//                     />
-//                 </div>
-
-//                 <div>
-//                     <label >Description</label>
-//                     <textarea
-//                         type="text"
-//                         value={input.inputDescription}
-//                         name="description"
-//                         onChange={(e) => handleInputChange(e)}
-//                         rows="5" cols="45"
-//                     />
-//                     {
-//                         errors.description && (
-//                             <p > {errors.description} </p>
-//                         )
-//                     }
-//                 </div>
-
-//                 {/* <div >
-//                     <label  >Platforms</label>
-//                     <select  onChange={(e) => handlePlatformsSelect(e)}>
-//                         {
-//                             platforms.map((e) => (
-//                                 <option value={e.name}> {e.name} </option>
-//                             ))
-//                         }
-//                     </select>
-//                     {input.platforms.map(e => (
-//                         <div>
-//                             <li >{e}<button
-                                
-//                                 type="button"
-//                                 onClick={() => handlePlatformDelete(e)}
-//                             >X</button>
-//                             </li>
-//                         </div>
-//                     ))}
-//                     {
-//                         errors.platforms && (
-//                             <p > {errors.platforms} </p>
-//                         )
-//                     }
-//                 </div > */}
-
-//                 <div >
-//                     <label >Genres</label>
-//                     <select onChange={(e) => handleGenreSelect(e)}>
-//                         {
-//                             genres.map((e) => (
-//                                 <option value={e.name}> {e.name} </option>
-//                             ))
-//                         }
-//                     </select>
-//                     <ul>
-//                         {input.genres.map(e => (
-//                             <div>
-//                                 <li >{e}<button
-                                    
-//                                     type="button"
-//                                     onClick={() => handleGenreDelete(e)}
-//                                 >X</button>
-//                                 </li>
-//                             </div>
-//                         ))}
-//                     </ul>
-//                     {
-//                         errors.genres && (
-//                             <p  > {errors.genres} </p>
-//                         )
-//                     }
-//                 </div>
-//                 {
-//                     errors && (errors.name || errors.rating || errors.description || errors.genres || errors.platforms) ?
-//                         <p  >Complete Form</p>
-//                         : <button type="submit">ADD VIDEOGAME</button>
-//                 }
-//             </form>
-//             <Link to="/home">
-//                 <button >Home</button>
-//             </Link>
-//         </div>
-//     )
-// }

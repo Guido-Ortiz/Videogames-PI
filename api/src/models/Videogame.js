@@ -23,7 +23,8 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     rating: {
-      type: DataTypes.INTEGER,
+      // type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: true
     },
     platforms: {

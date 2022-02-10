@@ -39,12 +39,24 @@ function VideogameDetail(){
                                 </div>
                                 <div className={s.genres}>
                                     <h3 className={s.subtitulo}>Platforms</h3>
-                                        
+                                    {videogameDetail.platforms.map(p => 
+                                    <h3 className={s.nombres}>{p}</h3>)}   
+                                </div>
+                                <div className={s.genres}>
+                                    <h3 className={s.subtitulo}>Released date</h3>
+                                    <h3 className={s.nombres}>{videogameDetail.released}</h3>
+                                </div>
+                                <div className={s.genres}>
+                                    <h3 className={s.subtitulo}>Rating</h3>
+                                    <h3 className={`${s.nombres} ${s.rating}`}>{videogameDetail.rating}</h3>
                                 </div>
                             </div>
                             
 
-                            <Link to='/home' style={{ textDecoration: 'none' }}>HOME</Link>
+                            <Link to='/home' style={{ textDecoration: 'none' }}>
+                                <button className={s.btn}>HOME</button>
+                            </Link>
+
                         </div>
                         
                         <img src={videogameDetail.image} className={s.imagen}/>

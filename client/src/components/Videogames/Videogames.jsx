@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { getGenres, getVideogames } from "../../actions/actions";
 import Videogame from "../Videogame/Videogame";
+import Loader from '../Loader/Loader';
 import s from './Videogames.module.css';
 
 
 export default function Videogames({videogames}){
 
     const dispatch = useDispatch() // mapDispatchToprops
+
+    const allVideogames = useSelector(state => state.allVideogames)
 
     useEffect(() => {
         dispatch(getVideogames())
@@ -39,11 +42,20 @@ export default function Videogames({videogames}){
             </div>
         )
     }
-    else{
+    // else{
+    //     return(
+    //         <p>Cargando la data...</p>
+    //     )
+    // }
+    if(videogames.length === 0 && allVideogames.length === 0){
         return(
-            <p>Cargando la data...</p>
+            <Loader />
         )
     }
-
+    if(videogames.length === 0){
+        return(
+            <p>Sorry. No matches found!</p>
+        )
+    }
     
 }

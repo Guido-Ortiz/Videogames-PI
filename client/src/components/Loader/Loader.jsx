@@ -1,10 +1,11 @@
 import React from "react";
-import LoaderGif from './assets/Loader.gif';
-export default function Loader(){
+import LoaderGif from './assets/loader1.gif';
+import s from './Loader.module.css';
 
+export default function Loader(){
     return(
         <div>
-            <img src={LoaderGif} />
+            <img src={LoaderGif} className={s.img}/>
         </div>      
     )
 }

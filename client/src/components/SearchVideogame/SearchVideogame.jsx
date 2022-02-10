@@ -14,8 +14,9 @@ export default function SearchVideogame(){
         setVideogame(e.target.value)
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         dispatch(getVideogamesByName(videogame))
+        setVideogame('')
     }
 
     return(

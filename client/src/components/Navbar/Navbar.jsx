@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { filterByGenre, filterCreated, orderByAlphabet, orderByRating } from "../../actions/actions";
+import { filterByGenre, filterCreated, getVideogames, orderByAlphabet, orderByRating } from "../../actions/actions";
 import SearchVideogame from '../SearchVideogame/SearchVideogame';
 import s from './Navbar.module.css';
 
-export default function Navbar(){
+export default function Navbar({setCurrentPage}){
+
+    console.log(setCurrentPage(1))
 
     const dispatch = useDispatch()
     const genres = useSelector(state => state.genres)
@@ -14,8 +16,8 @@ export default function Navbar(){
     //console.log(genres)
 
     function handleFilterGenre(e){
-        console.log(e.target.value)
         dispatch(filterByGenre(e.target.value))
+        //setCurrentPage(1)
     }
 
     function handleRating(e){
@@ -33,6 +35,13 @@ export default function Navbar(){
         dispatch(filterCreated(e.target.value))
     }
 
+    function handleClick(e){
+        e.preventDefault()
+        dispatch(getVideogames())
+        dispatch(filterCreated('all'))
+        dispatch(filterByGenre('all'))
+    }
+
     return(
         <div>
             <div className={s.flex}>
@@ -41,6 +50,8 @@ export default function Navbar(){
                 </Link>
             
                 <SearchVideogame />
+
+                <button onClick={e => handleClick(e)}>Reset all videogame</button>
             </div>
             
             <div className={s.filtros}>

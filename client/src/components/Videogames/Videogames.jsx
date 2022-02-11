@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
 import { getGenres, getVideogames } from "../../actions/actions";
 import Videogame from "../Videogame/Videogame";
 import Loader from '../Loader/Loader';

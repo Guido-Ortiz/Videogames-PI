@@ -20,7 +20,11 @@
 }
 
 .btn:hover{
-    /* color: hsla(0,0%, 100%, 0.4) */
+    background-color: #fff;
+    color: grey;
+}
+
+.btn:focus{
     background-color: #fff;
     color: grey;
 }

@@ -21,6 +21,8 @@ export default function Home(){
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
+    window.scrollTo(0, 0)
+
     return(
         <div className={s.fondo}>
             <Title />

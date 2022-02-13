@@ -10,7 +10,7 @@ router.get(`/:idVideogame`, async (req, res) => {
     const { idVideogame } = req.params
 
     // me pregunto si esta en la bd
-    if (idVideogame.includes("-")){
+    if (idVideogame.includes("-")) {
         let videogameDb = await videogamesDb(idVideogame);
         return res.json(videogameDb)
     }
@@ -36,26 +36,27 @@ router.get(`/:idVideogame`, async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    let { name, description, released, rating, platforms, genres, createdDb} = req.body
+    let { name, image, description, released, rating, platforms, genres, createdDb } = req.body
 
     let videogameCreated = await Videogame.create({
-      name, 
-      description,
-      released,
-      rating,
-      platforms,
-      createdDb
+        name,
+        image,
+        description,
+        released,
+        rating,
+        platforms,
+        createdDb
     })
 
     let genresDb = await Genre.findAll({
-      where: {
-          name: genres
+        where: {
+            name: genres
         }
-      }
+    }
     )
     videogameCreated.addGenres(genresDb);
     res.send("Videogame created OK");
-  })
+})
 
 async function videogamesDb(id) {
     try {

@@ -5,9 +5,9 @@ import { filterByGenre, filterCreated, getVideogames, orderByAlphabet, orderByRa
 import SearchVideogame from '../SearchVideogame/SearchVideogame';
 import s from './Navbar.module.css';
 
-export default function Navbar({setCurrentPage}){
+export default function Navbar(){
 
-    console.log(setCurrentPage(1))
+    // console.log(setCurrentPage(1))
 
     const dispatch = useDispatch()
     const genres = useSelector(state => state.genres)
@@ -37,9 +37,7 @@ export default function Navbar({setCurrentPage}){
 
     function handleClick(e){
         e.preventDefault()
-        dispatch(getVideogames())
-        dispatch(filterCreated('all'))
-        dispatch(filterByGenre('all'))
+        window.location.reload() // El metodo location.reload() carga de nuevo la URL actual, como lo hace el boton de Refresh de los navegadores.
     }
 
     return(

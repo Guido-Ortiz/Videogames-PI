@@ -57,6 +57,7 @@ function CreateVideogame(){
     const [form, setForm] = useState({
         name: '',
         description: '',
+        image: '',
         released: '',
         rating: '',
         genres: [],
@@ -78,8 +79,6 @@ function CreateVideogame(){
             ...form,
             [e.target.name]: e.target.value
         })
-        console.log(form)
-        
         setErrors(validate({
             ...form,
             [e.target.name]: e.target.value
@@ -91,10 +90,6 @@ function CreateVideogame(){
             ...form,
             genres: [...form.genres, e.target.value]
         })
-        // setErrors(validate({
-        //     ...form,
-        //     [e.target.genres]: e.target.value
-        // }))
         setErrors(validate({
             ...form,
             [e.target.name]: e.target.value
@@ -105,11 +100,7 @@ function CreateVideogame(){
         setForm({
             ...form,
             platforms: [...form.platforms, e.target.value]
-        })
-        // setErrors(validate({
-        //     ...form,
-        //     [e.target.platforms]: e.target.value
-        // }))  
+        }) 
         setErrors(validate({
             ...form,
             [e.target.name]: e.target.value
@@ -124,6 +115,7 @@ function CreateVideogame(){
         setForm({
             name: '',
             description: '',
+            image: '',
             released: '',
             rating: '',
             genres: [],
@@ -163,6 +155,13 @@ function CreateVideogame(){
                             errors.name && (<p className={s.errors}>{errors.name}</p>)
                         }
                     </div>
+                    <div className={s.options}>
+                        <label>Image URL:</label>
+                        <input type="text" value={form.image} name='image' onChange={e  => handleChange(e)} />
+                        {/* {
+                            errors.name && (<p className={s.errors}>{errors.name}</p>)
+                        } */}
+                    </div> 
                     <div className={s.options}>
                         <label>Description:</label>
                         <textarea type="text" value={form.description} name='description' onChange={e  => handleChange(e)}/>

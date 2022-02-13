@@ -31,6 +31,11 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.JSON), 
       allowNull: false,
     },
+    image:{
+      type: DataTypes.STRING,
+      //defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkEqXEeg1ShciEnxevzC0juPuhwGCflgsT-g&usqp=CAU',
+      //allowNull: false
+    },
     createdDb: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

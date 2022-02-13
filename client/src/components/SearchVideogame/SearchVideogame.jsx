@@ -15,8 +15,9 @@ export default function SearchVideogame(){
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault()
         dispatch(getVideogamesByName(videogame))
-        setVideogame('')
+        setVideogame(' ')
     }
 
     return(

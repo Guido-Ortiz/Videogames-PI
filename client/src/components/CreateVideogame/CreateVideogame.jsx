@@ -16,6 +16,9 @@ const validate = (values) => {
     if(!values.description){
         errors.description = 'Description is required'
     }
+    if(!values.image){
+        errors.image = 'Image is required'
+    }
     if(!values.name){
         errors.name = 'Name is required'
     }
@@ -157,10 +160,10 @@ function CreateVideogame(){
                     </div>
                     <div className={s.options}>
                         <label>Image URL:</label>
-                        <input type="text" value={form.image} name='image' onChange={e  => handleChange(e)} />
-                        {/* {
-                            errors.name && (<p className={s.errors}>{errors.name}</p>)
-                        } */}
+                        <input type="text" value={form.image} name='image' className={s.image} onChange={e  => handleChange(e)} />
+                        {
+                            errors.image && (<p className={s.errors}>{errors.image}</p>)
+                        }
                     </div> 
                     <div className={s.options}>
                         <label>Description:</label>
@@ -199,10 +202,13 @@ function CreateVideogame(){
                         }
                                 {
                                     form.platforms.map(p => (
-                                        <li className={s.lista}>
-                                            {p}
-                                            <button onClick={() => handleDeletePlatforms(p)}>x</button>
-                                        </li>
+                                        <div>
+                                            <li className={s.lista}>
+                                                {p}
+                                                <button onClick={() => handleDeletePlatforms(p)}>x</button>
+                                            </li>
+                                        </div>
+                                        
                                     ))
                                 }
                     </div>

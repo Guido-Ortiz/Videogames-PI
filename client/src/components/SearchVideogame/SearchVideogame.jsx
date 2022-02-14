@@ -17,7 +17,7 @@ export default function SearchVideogame(){
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(getVideogamesByName(videogame))
-        setVideogame(' ')
+        setVideogame('')
     }
 
     const handleOnKeyPress = (e) => {
@@ -30,6 +30,7 @@ export default function SearchVideogame(){
         <div>
             <input type='text'
                    placeholder='Search videogame...'
+                   value={videogame}
                    className={s.input}
                    onChange={e => handleInput(e)}
                    onKeyPress={ e=>handleOnKeyPress(e)}/>

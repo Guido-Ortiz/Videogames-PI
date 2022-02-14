@@ -57,6 +57,7 @@ function VideogameDetail(){
                                 <button className={s.btn}>HOME</button>
                             </Link>
 
+
                         </div>
                         
                         <img src={videogameDetail.image} className={s.imagen}/>

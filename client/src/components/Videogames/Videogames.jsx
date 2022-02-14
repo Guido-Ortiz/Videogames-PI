@@ -41,11 +41,6 @@ export default function Videogames({videogames}){
             </div>
         )
     }
-    // else{
-    //     return(
-    //         <p>Cargando la data...</p>
-    //     )
-    // }
     if(videogames.length === 0 && allVideogames.length === 0){
         return(
             <Loader />
@@ -53,7 +48,7 @@ export default function Videogames({videogames}){
     }
     if(videogames.length === 0){
         return(
-            <p>Sorry. No matches found!</p>
+            <p className={s.parrafo}>Sorry. No matches found!</p>
         )
     }
     

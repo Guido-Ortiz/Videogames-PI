@@ -7,7 +7,7 @@ export default function Landing(){
         <div className={`${s.fondo} ${s.container}`}>
             <div className={s.flex}>
                 <h1 className={s.titulo}>RAWG Video Games</h1>
-                <Link to = '/home'>
+                <Link to = '/home' style={{ textDecoration: 'none' }}>
                     <button className={s.btn}>Get Started</button>
                 </Link>
             </div>

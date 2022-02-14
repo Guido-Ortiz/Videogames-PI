@@ -5,7 +5,7 @@ import { filterByGenre, filterCreated, getVideogames, orderByAlphabet, orderByRa
 import SearchVideogame from '../SearchVideogame/SearchVideogame';
 import s from './Navbar.module.css';
 
-export default function Navbar(){
+export default function Navbar({setCurrentPage}){
 
     // console.log(setCurrentPage(1))
 
@@ -17,22 +17,25 @@ export default function Navbar(){
 
     function handleFilterGenre(e){
         dispatch(filterByGenre(e.target.value))
-        //setCurrentPage(1)
+        setCurrentPage(1)
     }
 
     function handleRating(e){
         dispatch(orderByRating(e.target.value))
+        setCurrentPage(1)
     }
 
     function handleFilterName(e){
         e.preventDefault()
         dispatch(orderByAlphabet(e.target.value))
+        setCurrentPage(1)
         setOrden(`Ordenado ${e.target.name}`)
     }
 
     function handleOrigin(e){
         e.preventDefault()
         dispatch(filterCreated(e.target.value))
+        setCurrentPage(1)
     }
 
     function handleClick(e){
@@ -49,7 +52,7 @@ export default function Navbar(){
             
                 <SearchVideogame />
 
-                <button onClick={e => handleClick(e)}>Reset all videogame</button>
+                <button className={`${s.btn} ${s.reset}`} onClick={e => handleClick(e)}>RESET</button>
             </div>
             
             <div className={s.filtros}>

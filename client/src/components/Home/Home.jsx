@@ -27,9 +27,9 @@ export default function Home(){
         <div className={s.fondo}>
             <Title />
             
-            {/* <Navbar setCurrentPage={setCurrentPage} /> */}
+            <Navbar setCurrentPage={setCurrentPage} />
 
-            <Navbar  />
+            {/* <Navbar  /> */}
 
             <Videogames videogames={currentVideogames}/>
             

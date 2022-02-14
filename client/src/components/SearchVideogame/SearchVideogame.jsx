@@ -20,13 +20,20 @@ export default function SearchVideogame(){
         setVideogame(' ')
     }
 
+    const handleOnKeyPress = (e) => {
+        if(e.key === 'Enter'){
+            handleSubmit(e)
+        }
+    }
+
     return(
         <div>
             <input type='text'
                    placeholder='Search videogame...'
                    className={s.input}
-                   onChange={e => handleInput(e)}/>
-            <button type='submit' className={s.btn} onClick={e => handleSubmit(e)}>SEARCH</button>
+                   onChange={e => handleInput(e)}
+                   onKeyPress={ e=>handleOnKeyPress(e)}/>
+            <button type='submit' className={s.btn} onClick={e => handleSubmit(e)} >SEARCH</button>
         </div>
     )
 }

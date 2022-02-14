@@ -33,9 +33,7 @@ function rootReducer(state = initialstate, action) {
             }
         case FILTER_BY_GENRE:
             const all = state.allVideogames
-            console.log(state.allVideogames)
             const filterGenre = action.payload === 'all' ? all : all.filter(v => v.genres.find(g => g.name === action.payload))
-            // : allVideogames.find(g => g.name === action.payload)
             return {
                 ...state,
                 videogames: [...filterGenre],

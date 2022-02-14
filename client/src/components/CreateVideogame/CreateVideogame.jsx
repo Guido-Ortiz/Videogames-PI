@@ -28,10 +28,10 @@ const validate = (values) => {
     else if(!regex.test(values.rating)){
         errors.rating = 'Rating must be a number between 0 - 5!'
     }
-    if(!values.platforms){
+    if(values.platforms.length === 0){
         errors.platforms = 'Platform is required'
     } 
-    if(!values.genres){
+    if(values.genres.length === 0){
         errors.genres = 'Genres is required'
     } 
     

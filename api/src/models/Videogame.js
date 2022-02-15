@@ -33,8 +33,6 @@ module.exports = (sequelize) => {
     },
     image:{
       type: DataTypes.STRING,
-      //defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkEqXEeg1ShciEnxevzC0juPuhwGCflgsT-g&usqp=CAU',
-      //allowNull: false
     },
     createdDb: {
       type: DataTypes.BOOLEAN,

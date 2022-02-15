@@ -60,7 +60,7 @@ function VideogameDetail(){
 
                         </div>
                         
-                        <img src={videogameDetail.image} className={s.imagen}/>
+                        <img src={videogameDetail.image} className={s.imagen} alt="img not found"/>
                         
                     </div>
                 ) : (

@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { filterByGenre, filterCreated, getVideogames, orderByAlphabet, orderByRating } from "../../actions/actions";
+import { filterByGenre, filterCreated, orderByAlphabet, orderByRating } from "../../actions/actions";
 import SearchVideogame from '../SearchVideogame/SearchVideogame';
 import s from './Navbar.module.css';
 
 export default function Navbar({setCurrentPage}){
 
-    // console.log(setCurrentPage(1))
-
     const dispatch = useDispatch()
     const genres = useSelector(state => state.genres)
     const [orden, setOrden] = useState('')
-    
-    //console.log(genres)
 
     function handleFilterGenre(e){
         dispatch(filterByGenre(e.target.value))

@@ -136,7 +136,6 @@ function rootReducer(state = initialstate, action) {
 
         case FILTER_CREATED:
             const vgs = state.allVideogames;
-            console.log(action.payload)
             const filterByOrigin =
                 action.payload === "db"
                     ? vgs.filter((e) => e.createdDb === true)

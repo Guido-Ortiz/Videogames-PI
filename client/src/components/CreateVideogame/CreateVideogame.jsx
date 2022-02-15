@@ -52,8 +52,9 @@ function CreateVideogame(){
     const videogames = useSelector(state => state.videogames)
     let platforms = []
     if(videogames){
-        platforms = videogames.map(g => g.platforms.find(p => p))
-        platforms = Array.from(new Set(platforms.map(p => p))) // Array.from() crea una nueva instancia de Array a partir de un objeto iterable
+        platforms = videogames.map(g => g.platforms.find(p => p)) // --> traigo todas las platforms
+        platforms = Array.from(new Set(platforms.map(p => p))) // --> NO repito las platforms
+        // Array.from() crea una nueva instancia de Array a partir de un objeto iterable
         // Un valor en un Set sólo puede estar una vez; éste es único en la colección Set
     }
 
@@ -68,7 +69,6 @@ function CreateVideogame(){
     })
 
     const [errors, setErrors] = useState({})
-    //const [isSubmit, setIsSubmit] = useState(false)
 
     useEffect(() => {
          dispatch(getGenres())
@@ -112,7 +112,6 @@ function CreateVideogame(){
 
     function handleSubmit(e){
         e.preventDefault()
-
         dispatch(createVideogamegame(form))
         alert('Videogame created!')
         setForm({
@@ -205,7 +204,7 @@ function CreateVideogame(){
                                         <div>
                                             <li className={s.lista}>
                                                 {p}
-                                                <button onClick={() => handleDeletePlatforms(p)}>x</button>
+                                                {/* <button onClick={() => handleDeletePlatforms(p)}>x</button> */}
                                             </li>
                                         </div>
                                         
@@ -215,11 +214,10 @@ function CreateVideogame(){
                     <div className={s.options}>
                         <label>Genres:</label>
                         <select onChange={e => handleGenres(e)}>
-                            
                             {
                                 genres.map(g => {
                                     return(
-                                        <option value={g.name}>{g.name}</option>
+                                        <option key={g.id} value={g.name}>{g.name}</option>
                                     )
                                 })
                             }
@@ -231,14 +229,15 @@ function CreateVideogame(){
                             form.genres.map(g => (
                                 <li className={s.lista}>
                                     {g}
-                                    <button onClick={() => handleDeleteGenre(g)}>x</button>
+                                    {/* <button onClick={() => handleDeleteGenre(g)}>x</button> */}
                                 </li>
                             ))
                         }
                     </div>
                     <div className={s.flexBtn}>
                         {
-                            Object.keys(errors).length === 0 && (<button className={s.button} type="submit">CREATE</button>)
+                            // Object.keys(errors).length === 0 && (<button className={s.button} type="submit">CREATE</button>)
+                            (Object.keys(errors).length === 0 && form.name && form.image && form.description && form.released && form.rating && form.platforms && form.genres) && (<button className={s.button} type="submit">CREATE</button>)
                         }
                         {/* <button type="submit">CREATE</button> */}
                         <Link to={'/home'} style={{ textDecoration: 'none' }}>

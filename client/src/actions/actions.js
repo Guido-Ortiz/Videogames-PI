@@ -8,7 +8,6 @@ import {
     FILTER_CREATED,
     GET_VIDEOGAMES_BY_NAME,
     GET_VIDEOGAME_DETAIL,
-    CREATE_VIDEOGAME,
     RESET_VIDEOGAME_DETAIL,
 } from "./constants";
 
@@ -29,7 +28,6 @@ export function getVideogames(){
 export function createVideogamegame(payload){
     return async function(dispatch){
         const json = axios.post('http://localhost:3001/videogame', payload)
-        console.log(json)
         return json
     }
 }

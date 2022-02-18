@@ -10,48 +10,49 @@ const validate = (values) => {
     const errors = {}
     const regex = /^[0-5]$|^[0-5]\.[0-9]{1,2}$/;
     // const regex = /^[0-5]{1,3}$|^[0-5]{1,3}\.[0-9]{1,3}$/;
-    if(!values.name){
+    if (!values.name) {
         errors.name = 'Name is required'
     }
-    if(!values.description){
+    if (!values.description) {
         errors.description = 'Description is required'
     }
-    if(!values.image){
+    if (!values.image) {
         errors.image = 'Image is required'
     }
-    if(!values.name){
+    if (!values.name) {
         errors.name = 'Name is required'
     }
-    if(!values.released){
+    if (!values.released) {
         errors.released = 'Released date is required'
     }
-    if(!values.rating){
+    if (!values.rating) {
         errors.rating = 'Rating is required'
     }
-    else if(!regex.test(values.rating)){
+    else if (!regex.test(values.rating)) {
         errors.rating = 'Rating must be a number between 0 - 5!'
     }
-    if(values.platforms.length === 0){
+    if (values.platforms.length === 0) {
         errors.platforms = 'Platform is required'
-    } 
-    if(values.genres.length === 0){
+    }
+    if (values.genres.length === 0) {
         errors.genres = 'Genres is required'
-    } 
-    
+    }
+
     return errors
 }
 
 
-function CreateVideogame(){
+function CreateVideogame() {
 
     const dispatch = useDispatch()
 
-    const history = useHistory()
+    const history = useHistory() // useHistory hook gives you access to the history instance that you may use to navigate.
 
     const genres = useSelector(state => state.genres)
     const videogames = useSelector(state => state.videogames)
+
     let platforms = []
-    if(videogames){
+    if (videogames) {
         platforms = videogames.map(g => g.platforms.find(p => p)) // --> traigo todas las platforms
         platforms = Array.from(new Set(platforms.map(p => p))) // --> NO repito las platforms
         // Array.from() crea una nueva instancia de Array a partir de un objeto iterable
@@ -71,12 +72,12 @@ function CreateVideogame(){
     const [errors, setErrors] = useState({})
 
     useEffect(() => {
-         dispatch(getGenres())
-         dispatch(getVideogames())
+        dispatch(getGenres())
+        dispatch(getVideogames())
     }, [dispatch])
 
 
-    function handleChange(e){
+    function handleChange(e) {
         //const {name, value} = e.target
         setForm({
             ...form,
@@ -85,32 +86,52 @@ function CreateVideogame(){
         setErrors(validate({
             ...form,
             [e.target.name]: e.target.value
-        }))   
+        }))
     }
 
-    function handleGenres(e){
+    function handleGenres(e) {
         setForm({
             ...form,
             genres: [...form.genres, e.target.value]
+
         })
         setErrors(validate({
             ...form,
             [e.target.name]: e.target.value
-        }))   
+        }))
     }
 
-    function handlePlatforms(e){
-        setForm({
-            ...form,
-            platforms: [...form.platforms, e.target.value]
-        }) 
-        setErrors(validate({
-            ...form,
-            [e.target.name]: e.target.value
-        }))   
+    function handlePlatforms(e) {
+        // setForm({
+        //     ...form,
+        //     platforms: [...form.platforms, e.target.value]
+        // })
+        // setErrors(validate({
+        //     ...form,
+        //     [e.target.name]: e.target.value
+        // }))
+        if(!form.platforms.includes(e.target.value)){
+            setForm({
+                ...form,
+                platforms: [...form.platforms, e.target.value]
+            })
+            setErrors(validate({
+                ...form,
+                [e.target.name]: e.target.value
+            }))
+        }
+        else{
+                {
+                    alert("Platform already selected!! 😒")
+                    //<p>Platform already selected!</p>
+                    
+                }
+            //e.target.value= ""
+        }
+        
     }
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault()
         dispatch(createVideogamegame(form))
         alert('Videogame created!')
@@ -126,22 +147,7 @@ function CreateVideogame(){
         history.push('/home')
     }
 
-    function handleDeleteGenre(name){
-        setForm({
-            ...form,
-            genres: form.genres.filter(g => g !== name)
-        })
-    }
-
-    function handleDeletePlatforms(name){
-        setForm({
-            ...form,
-            platforms: form.platforms.filter(p => p !== name)
-        })
-    }
-
-    
-    return(
+    return (
         <div className={s.fondo}>
 
             <Title />
@@ -152,35 +158,35 @@ function CreateVideogame(){
                 <form onSubmit={e => handleSubmit(e)}>
                     <div className={s.options}>
                         <label>Name:</label>
-                        <input type="text" value={form.name} name='name' onChange={e  => handleChange(e)} />
+                        <input type="text" value={form.name} name='name' onChange={e => handleChange(e)} />
                         {
                             errors.name && (<p className={s.errors}>{errors.name}</p>)
                         }
                     </div>
                     <div className={s.options}>
                         <label>Image URL:</label>
-                        <input type="text" value={form.image} name='image' className={s.image} onChange={e  => handleChange(e)} />
+                        <input type="text" value={form.image} name='image' className={s.image} onChange={e => handleChange(e)} />
                         {
                             errors.image && (<p className={s.errors}>{errors.image}</p>)
                         }
-                    </div> 
+                    </div>
                     <div className={s.options}>
                         <label>Description:</label>
-                        <textarea type="text" value={form.description} name='description' onChange={e  => handleChange(e)}/>
+                        <textarea type="text" value={form.description} name='description' onChange={e => handleChange(e)} />
                         {
                             errors.description && (<p className={s.errors}>{errors.description}</p>)
                         }
                     </div>
                     <div className={s.options}>
                         <label>Released:</label>
-                        <input type="date" value={form.released} name='released' onChange={e  => handleChange(e)}/>
+                        <input type="date" value={form.released} name='released' onChange={e => handleChange(e)} />
                         {
                             errors.released && (<p className={s.errors}>{errors.released}</p>)
                         }
                     </div>
                     <div className={s.options}>
                         <label>Rating:</label>
-                        <input type="number" value={form.rating} name='rating' onChange={e  => handleChange(e)}/>
+                        <input type="number" value={form.rating} name='rating' onChange={e => handleChange(e)} />
                         {
                             errors.rating && (<p className={s.errors}>{errors.rating}</p>)
                         }
@@ -188,9 +194,9 @@ function CreateVideogame(){
                     <div className={s.options}>
                         <label>Platforms:</label>
                         <select onChange={e => handlePlatforms(e)}>
-                        {
+                            {
                                 platforms.map((p, i) => {
-                                    return(
+                                    return (
                                         <option key={i} value={p}>{p}</option>
                                     )
                                 })
@@ -199,24 +205,24 @@ function CreateVideogame(){
                         {
                             errors.platforms && (<p className={s.errors}>{errors.platforms}</p>)
                         }
-                                {
-                                    form.platforms.map(p => (
-                                        <div>
-                                            <li className={s.lista}>
-                                                {p}
-                                                {/* <button onClick={() => handleDeletePlatforms(p)}>x</button> */}
-                                            </li>
-                                        </div>
-                                        
-                                    ))
-                                }
+                        {
+                            form.platforms.map(p => (
+                                <div>
+                                    <li className={s.lista}>
+                                        {p}
+
+                                    </li>
+                                </div>
+
+                            ))
+                        }
                     </div>
                     <div className={s.options}>
                         <label>Genres:</label>
                         <select onChange={e => handleGenres(e)}>
                             {
                                 genres.map(g => {
-                                    return(
+                                    return (
                                         <option key={g.id} value={g.name}>{g.name}</option>
                                     )
                                 })
@@ -229,7 +235,7 @@ function CreateVideogame(){
                             form.genres.map(g => (
                                 <li className={s.lista}>
                                     {g}
-                                    {/* <button onClick={() => handleDeleteGenre(g)}>x</button> */}
+
                                 </li>
                             ))
                         }
@@ -244,10 +250,10 @@ function CreateVideogame(){
                             <button className={s.button}>BACK</button>
                         </Link>
                     </div>
-                    
+
                 </form>
             </div>
-             
+
         </div>
     )
 }
